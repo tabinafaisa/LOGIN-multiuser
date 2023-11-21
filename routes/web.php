@@ -22,5 +22,13 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'auth']);
-Route::get('/admin', [AdminController::class, 'index']);
+
 Route::get('/siswa', [SiswaController::class, 'index']);
+Route::post('/vote', [SiswaController::class, 'vote']);
+Route::prefix('/admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index']);
+    Route::post('/store', [AdminController::class, 'store']);
+    Route::delete('/delete/{id}', [AdminController::class, 'delete']);
+    Route::get('/edit/{id}', [AdminController::class, 'edit']);
+    Route::post('/update', [AdminController::class, 'update']);
+});
